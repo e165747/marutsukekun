@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-print("aaaa")
 
 import cv2
 import numpy as np
 import random
 import sys
 args = sys.argv
+print("test)
 
 if __name__ == '__main__':
 
