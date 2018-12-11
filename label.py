@@ -6,7 +6,7 @@ import numpy as np
 import random
 import sys
 args = sys.argv
-print("test)
+print("test")
 
 if __name__ == '__main__':
 
