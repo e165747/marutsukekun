@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+print("test")
 
 import cv2
 import numpy as np
@@ -11,7 +12,7 @@ if __name__ == '__main__':
 
     # 対象画像を指定
     input_image_path = args[1]
-   
+
     # 画像をグレースケールで読み込み
     gray_src = cv2.imread(input_image_path, 0)
     src_size = gray_src.shape
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     # 前処理（平準化フィルターを適用した場合）
     # 前処理が不要な場合は下記行をコメントアウト
     blur_src = cv2.GaussianBlur(gray_src, (5, 5), 2)
-    
+
     # 二値変換
     # 前処理を使用しなかった場合は、blur_srcではなくgray_srcに書き換えるする
     mono_src = cv2.threshold(blur_src,120, 255, cv2.THRESH_BINARY_INV)[1]
@@ -31,7 +32,7 @@ if __name__ == '__main__':
 
     # ラベリング処理
     label = cv2.connectedComponentsWithStats(mono_src)
-    
+
     # オブジェクト情報を項目別に抽出
     n = label[0] - 1
     data = np.delete(label[2], 0, 0)
@@ -43,10 +44,10 @@ if __name__ == '__main__':
     x1_org = data[0][0] + data[0][2]
     y1_org = data[0][1] + data[0][3]
 
-    
+
     # オブジェクト情報を利用してラベリング結果を画面に表示
     for i in range(n-1):
- 
+
         # 各オブジェクトの外接矩形を赤枠で表示
         x0 = data[i][0]
         y0 = data[i][1]
@@ -57,7 +58,7 @@ if __name__ == '__main__':
         #cv2.rectangle(color_src02, (x0, y0), (x1, y1), (0, 0, 255))
         cv2.rectangle(color_src01, (x0, 0), (x1,src_size[0]), (0, 0, 255))
 
-        
+
         # 各オブジェクトのラベル番号と面積に黄文字で表示
         cv2.putText(color_src01, "ID: " +str(i + 1), (x1 - 20, y1 + 15), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255))
         cv2.putText(color_src01, "S: " +str(data[i][4]), (x1 - 20, y1 + 30), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255))
