@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-print("test")
 
 import cv2
 import numpy as np
