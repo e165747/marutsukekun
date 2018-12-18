@@ -6,7 +6,7 @@ import numpy as np
 import random
 import sys
 args = sys.argv
-print("test1")
+print("test2")
 
 if __name__ == '__main__':
 
@@ -43,7 +43,6 @@ if __name__ == '__main__':
     y0_org = data[0][1]
     x1_org = data[0][0] + data[0][2]
     y1_org = data[0][1] + data[0][3]
-
 
     # オブジェクト情報を利用してラベリング結果を画面に表示
     for i in range(n-1):
