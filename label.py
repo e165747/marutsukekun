@@ -5,8 +5,35 @@ import cv2
 import numpy as np
 import random
 import sys
+
+
 args = sys.argv
-print("test2")
+"""
+import pyocr
+import pyocr.builders
+from PIL import Image
+
+
+tools = pyocr.get_available_tools()
+
+if len(tools) == 0:
+    print("No OCR tool found")
+    sys.exit(1)
+
+# The tools are returned in the recommended order of usage
+tool = tools[0]
+#print("Will use tool '%s'" % (tool.get_name()))
+# Ex: Will use tool 'libtesseract'
+
+langs = tool.get_available_languages()
+#print("Available languages: %s" % ", ".join(langs))
+lang = langs[0]
+#print("Will use lang '%s'" % (lang))
+# Ex: Will use lang 'fra'
+# Note that languages are NOT sorted in any way. Please refer
+# to the system locale settings for the default language
+# to use.
+"""
 
 if __name__ == '__main__':
 
@@ -47,7 +74,7 @@ if __name__ == '__main__':
     #y1_org = data[0][1] + data[0][3]
 
     # オブジェクト情報を利用してラベリング結果を画面に表示
-    for i in range(2):
+    for i in range(1):
         
         #マスク用画像を生成
         mask = np.zeros_like(gray_src)
@@ -71,13 +98,23 @@ if __name__ == '__main__':
         # 各オブジェクトの重心座標をに黄文字で表示
         cv2.putText(color_src02, "X: " + str(int(center[i][0])), (x1 - 30, y1 + 15), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255))
         cv2.putText(color_src02, "Y: " + str(int(center[i][1])), (x1 - 30, y1 + 30), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255))
+        
+        kiritori = cv2.bitwise_or(mask_white,img_masked)
+        cv2.imwrite("test.png",kiritori)
+        """
+        txt = tool.image_to_string(
+            Image.open("test.png"),
+            lang="eng",
+            builder=pyocr.builders.TextBuilder(tesseract_layout=6)
+        )
+        print( txt )
+        """
 
     # 結果の表示
-    kiritori = cv2.bitwise_or(mask_white,img_masked)
+    #kiritori = cv2.bitwise_or(mask_white,img_masked)
     cv2.imshow("abc",kiritori)
-    cv2.imwrite("test.png",kiritori)
+    #cv2.imwrite("test.png",kiritori)
     cv2.imshow("masked",img_masked)
-        
     cv2.imshow("mask",mask_white)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
