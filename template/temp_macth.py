@@ -2,12 +2,27 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 import sys
+import math
+
+#画像をリサイズする関数
+def resize(img,resize_height):
+    img_height,img_width = img.shape
+    resize_width = resize_height / img_height * img_width
+    return cv2.resize(img,(int(resize_width),int(resize_height)))
 
 args = sys.argv
 img = cv2.imread(args[1],0)
+#画像をリサイズして縦の長さを合わせる
+resize_height = 50
+img = resize(img,50)
+
+#cv2.imshow("img",img)
+#cv2.waitKey()
 img2 = img.copy()
 template = cv2.imread(args[2],0)
+print(args[2])
 w, h = template.shape[::-1]
+
 
 # All the 6 methods for comparison in a list
 methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
@@ -31,10 +46,13 @@ for meth in methods:
 
     cv2.rectangle(img,top_left, bottom_right, 0, 2)
 
-    plt.subplot(121),plt.imshow(res,cmap = 'gray')
+    #出力
+    plt.subplot(221),plt.imshow(res,cmap = 'gray')
     plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(img,cmap = 'gray')
+    plt.subplot(222),plt.imshow(img,cmap = 'gray')
     plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
+    plt.subplot(223),plt.imshow(template,cmap = 'gray')
+    plt.title('number_data'), plt.xticks([]), plt.yticks([])
     plt.suptitle(meth)
 
     plt.show()
