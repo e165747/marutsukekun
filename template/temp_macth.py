@@ -26,7 +26,7 @@ for temp in tempfile:
 
     # Apply template Matching
     res = cv2.matchTemplate(img,template,cv2.TM_CCOEFF_NORMED)
-    
+
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
     print('max value: {},min_value: {}, position: {}'.format(max_val,min_val,max_loc))
 
