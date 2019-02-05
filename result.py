@@ -22,8 +22,6 @@ thresh = cv2.adaptiveThreshold(gray,255,1,1,11,2)
 image,contours,hierarchy = cv2.findContours(thresh,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
 
 siki=[]
-zx = 0
-ko = 1
 one = 0
 two = 0
 
@@ -42,6 +40,7 @@ for cnt in contours:
             cv2.putText(out,string,(x,y+h),0,1,(0,255,0))
 
             #配列に突っ込む
+
             #siki.insert(0,int(string))
             siki.append([x,string])
             siki.sort(key=lambda x:(x[0],x[1]))
