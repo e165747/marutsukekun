@@ -111,4 +111,3 @@ elif max_sign == "÷":
     answer = int(result[0]) / int(result[1])
 
 print("こたえは"+result[0]+ max_sign +result[1]+"=" + str(int(answer))+"だよ")
-
