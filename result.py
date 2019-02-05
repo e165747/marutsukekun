@@ -13,7 +13,7 @@ model.train(samples,cv2.ml.ROW_SAMPLE,responses)
 
 ############################# testing part  #########################
 
-im = cv2.imread('problem/ta14.png')
+im = cv2.imread('problem/ta4.png')
 out = np.zeros(im.shape,np.uint8)
 gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
 thresh = cv2.adaptiveThreshold(gray,255,1,1,11,2)
@@ -42,22 +42,29 @@ for cnt in contours:
             cv2.putText(out,string,(x,y+h),0,1,(0,255,0))
 
             #配列に突っ込む
-            siki.insert(0,int(string))
-"""
-            if zx==0:
-                one=int(string)
-                ko=1
-            if zx != 0:
-                if zx-x<abs(30) and ko==1:
-                    one=one*10+int(string)
-                elif zx-x>=abs(30) and ko==1:
-                    ko=2
-                    two=int(string)
-                elif zx-x<abs(30) and ko==2:
-                    two=two*10+int(string)
-            zx=x
-"""
-print(siki)
+            #siki.insert(0,int(string))
+            siki.append([x,string])
+            siki.sort(key=lambda x:(x[0],x[1]))
+
+result = []
+x_place =  siki[0][0]
+x_str = siki[0][1]
+
+
+#数字をまとめる
+for n in siki[1:]:
+    if abs(x_place - n[0]) <= 50:
+        x_str += n[1]
+        print("if")
+    else:
+        result.append(x_str)
+        x_str = n[1]
+        print("else")
+    x_place = n[0]
+
+result.append(x_str)
+print(result)
+#print(siki)
 cv2.imshow('im',im)
 cv2.imshow('out',out)
 cv2.waitKey(0)

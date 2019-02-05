@@ -42,7 +42,7 @@ for temp in tempfile:
         max_sign = sign[place]
 
     t_o_m.append(max_val)
-    print(max_sign)
+
     #出力
     plt.subplot(221),plt.imshow(res,cmap = 'gray')
     plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
@@ -53,3 +53,5 @@ for temp in tempfile:
     plt.suptitle(temp)
 
     plt.show()
+
+print(max_sign)
