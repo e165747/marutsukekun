@@ -13,7 +13,7 @@ model.train(samples,cv2.ml.ROW_SAMPLE,responses)
 
 ############################# testing part  #########################
 
-im = cv2.imread('problem/ta4.png')
+im = cv2.imread(args[1])
 out = np.zeros(im.shape,np.uint8)
 gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
 thresh = cv2.adaptiveThreshold(gray,255,1,1,11,2)
@@ -29,7 +29,7 @@ for cnt in contours:
     #輪郭の囲む面積
     if cv2.contourArea(cnt)>40:
         [x,y,w,h] = cv2.boundingRect(cnt)
-        if  h>52:
+        if  h>53:
             cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
             roi = thresh[y:y+h,x:x+w]
             roismall = cv2.resize(roi,(10,10))

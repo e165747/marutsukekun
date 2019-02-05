@@ -69,7 +69,7 @@ for cnt in contours:
     #輪郭の囲む面積
     if cv2.contourArea(cnt)>40:
         [x,y,w,h] = cv2.boundingRect(cnt)
-        if  h>52:
+        if  h>53:
             cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
             roi = thresh[y:y+h,x:x+w]
             roismall = cv2.resize(roi,(10,10))
