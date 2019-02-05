@@ -70,8 +70,13 @@ if __name__ == '__main__':
     #y1_org = data[0][1] + data[0][3]
 
     # オブジェクト情報を利用してラベリング結果を画面に表示
+<<<<<<< HEAD
+    for i in range(7):
+        
+=======
     for i in range(1):
 
+>>>>>>> 18b9acecf7d2f4adaab42ed7ada7e1ccbe366d40
         #マスク用画像を生成
         mask = np.zeros_like(gray_src)
         mask_white = np.full_like(gray_src, 255)
@@ -94,8 +99,13 @@ if __name__ == '__main__':
         # 各オブジェクトの重心座標をに黄文字で表示
         cv2.putText(color_src02, "X: " + str(int(center[i][0])), (x1 - 30, y1 + 15), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255))
         cv2.putText(color_src02, "Y: " + str(int(center[i][1])), (x1 - 30, y1 + 30), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255))
+<<<<<<< HEAD
+        
+        #kiritori = cv2.bitwise_or(mask_white,img_masked)
+=======
 
         kiritori = cv2.bitwise_or(mask_white,img_masked)
+>>>>>>> 18b9acecf7d2f4adaab42ed7ada7e1ccbe366d40
         cv2.imwrite("test.png",kiritori)
         """
         txt = tool.image_to_string(
