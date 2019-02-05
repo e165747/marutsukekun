@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
+import sys
 
+args = sys.argv
 #######   training part    ###############
 samples = np.loadtxt('generalsamples.data',np.float32)
 responses = np.loadtxt('generalresponses.data',np.float32)
@@ -24,6 +26,7 @@ zx = 0
 ko = 1
 one = 0
 two = 0
+
 for cnt in contours:
     #輪郭の囲む面積
     if cv2.contourArea(cnt)>40:
@@ -37,6 +40,7 @@ for cnt in contours:
             retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
             string = str(int((results[0][0])))
             cv2.putText(out,string,(x,y+h),0,1,(0,255,0))
+
             #配列に突っ込む
             siki.insert(0,int(string))
 """
