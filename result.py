@@ -1,3 +1,4 @@
+#result.py
 import cv2
 import numpy as np
 import sys
@@ -54,11 +55,9 @@ x_str = siki[0][1]
 for n in siki[1:]:
     if abs(x_place - n[0]) <= 50:
         x_str += n[1]
-        print("if")
     else:
         result.append(x_str)
         x_str = n[1]
-        print("else")
     x_place = n[0]
 
 result.append(x_str)
