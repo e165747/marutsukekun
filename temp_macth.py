@@ -1,4 +1,4 @@
-temp_match.py
+#temp_match.py
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -10,8 +10,8 @@ img = cv2.imread(args[1],0)
 img2 = img.copy()
 
 #マッチングさせる記号ファイルがある場所
-tempfile = ['../match_data/plus.png', '../match_data/minus.png', '../match_data/times.png',
-            '../match_data/divide.png']
+tempfile = ['match_data/plus.png', 'match_data/minus.png', 'match_data/times.png',
+            'match_data/divide.png']
 #出力させる記号の配列
 sign = ["+","-","*","/"]
 max_sign = 0
